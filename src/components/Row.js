@@ -5,7 +5,6 @@ import axios from "../axios";
 
 const Row = ({ title, fetchData, isFirst = false, handleSelected }) => {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [moved, setIsMoved] = useState(false);
   const rowRef = useRef(null);
 
@@ -13,7 +12,6 @@ const Row = ({ title, fetchData, isFirst = false, handleSelected }) => {
     const fetchTrending = async () => {
       const request = await axios.get(fetchData);
       setMovies(request.data.results);
-      setLoading(false);
       return request;
     };
 
@@ -35,8 +33,8 @@ const Row = ({ title, fetchData, isFirst = false, handleSelected }) => {
   };
 
   return (
-    <div className="ml-2 pb-2">
-      <h2 className="text-white text-lg font-bold md:text-xl lg:text-2xl">
+    <div className="ml-2 pb-2 md:ml-6">
+      <h2 className="text-white text-2xl font-bold md:text-3xl lg:text-2xl">
         {title}
       </h2>
       <div className="group relative w-full mt-2">

@@ -17,11 +17,11 @@ const Banner = ({ movie, handleSelected }) => {
         })`,
       }}
     >
-      <div className="flex flex-col h-[190px] space-y-3 pt-28 px-2 lg:px-6">
-        <h1 className="text-white text-2xl font-bold md:text-4xl lg:text-7xl">
+      <div className="flex flex-col h-[190px] space-y-3 pt-28 px-2 md:px-6 lg:px-6">
+        <h1 className="text-white text-3xl font-bold md:text-5xl lg:text-7xl">
           {movie?.title || movie?.original_title}
         </h1>
-        <p className="text-white text-shadow max-w-xs text-sm md:text-lg md:max-w-lg md:text-shadow-md lg:text-shadow-lg lg:text-xl lg:max-w-xl">
+        <p className="text-white text-shadow max-w-xs text-lg md:text-xl md:max-w-lg md:text-shadow-md lg:text-shadow-lg lg:text-xl lg:max-w-xl">
           {trimString(movie?.overview)}
         </p>
         <div className="flex space-x-2 md:mt-2">

@@ -6,6 +6,8 @@ import Profile from "./views/Profile";
 import { auth } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logOut, selectUser } from "./features/userSlice";
+import SignUp from "./views/SignUp";
+import AutoComplete from "./components/AutoComplete";
 
 const App = () => {
   const user = useSelector(selectUser);
@@ -35,7 +37,9 @@ const App = () => {
         ) : (
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/search" element={<AutoComplete />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
         )}

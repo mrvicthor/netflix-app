@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Navbar = ({ toggle }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -39,15 +40,19 @@ const Navbar = ({ toggle }) => {
           <li className="hoverAnimation text-white">My List</li>
         </ul>
       )}
+
       <div className="flex gap-2 items-center">
         <FiSearch
-          className="hidden sm:block sm:cursor-pointer text-white"
+          onClick={() => navigate("/search")}
+          className="sm:block sm:cursor-pointer text-white"
           size={22}
         />
+
         <FiBell
           className="ml-auto cursor-pointer text-white font-semibold"
           size={22}
         />
+
         <img
           className="h-8 cursor-pointer"
           src="https://rb.gy/g1pwyx"

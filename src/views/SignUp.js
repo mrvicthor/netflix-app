@@ -1,39 +1,35 @@
-import { useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "../firebase";
+import { useForm } from "react-hook-form";
 
-const SignIn = () => {
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-  const signUp = (e) => {
-    e.preventDefault();
-    createUserWithEmailAndPassword(
-      auth,
-      emailRef.current.value,
-      passwordRef.current.value
-    )
+const SignUp = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+  // const emailRef = useRef(null);
+  // const passwordRef = useRef(null);
+  const signUp = handleSubmit((data) => {
+    createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((cred) => {
         console.log("user created:", cred.user);
       })
       .catch((err) => {
         console.log(err.message);
       });
-  };
+  });
 
-  const signIn = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(
-      auth,
-      emailRef.current.value,
-      passwordRef.current.value
-    )
+  const signIn = handleSubmit((data) => {
+    signInWithEmailAndPassword(auth, data.email, data.password)
       .then((cred) => console.log("Sign in successful"))
       .catch((err) => console.log(err.message));
-  };
+  });
+
   return (
     <div
       style={{ background: "rgba(0,0,0,.4)" }}
@@ -44,16 +40,27 @@ const SignIn = () => {
       </h1>
       <form className="flex flex-col space-y-3">
         <input
-          ref={emailRef}
+          {...register("email", {
+            required: "Email is required...",
+            pattern: {
+              value: /^\S+@\S+\.\S+$/,
+              message: "Invalid email, please enter a valid email",
+            },
+          })}
           placeholder="Email..."
           className="py-2 px-4 rounded outline-none"
         />
+        {errors.email && (
+          <p className="text-red-700">{errors.email?.message}</p>
+        )}
         <input
-          ref={passwordRef}
+          {...register("password", { required: "Password is required" })}
           type="password"
           className="py-2 px-4 rounded outline-none"
         />
-
+        {errors.password && (
+          <p className="text-red-700">{errors.password?.message}</p>
+        )}
         <button
           type="submit"
           onClick={signIn}
@@ -73,4 +80,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

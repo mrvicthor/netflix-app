@@ -6,7 +6,7 @@ const Thumbnail = ({ movie, isFirst, onSelect }) => {
         movie?.backdrop_path || movie?.poster_path
       }`}
       className={`object-cover rounded  cursor-pointer hoverCard ${
-        isFirst ? "h-[200px] min-w-[150px]" : "min-w-[200px] max-h-[170px]"
+        isFirst ? "h-[200px] min-w-[150px]" : "min-w-[200px] h-[120px]"
       } `}
       alt={movie.title}
     />

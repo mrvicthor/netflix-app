@@ -5,12 +5,13 @@ import requests from "../utils/request";
 import Row from "../components/Row";
 import axios from "../axios";
 import Modal from "../components/Modal";
+import Footer from "../components/Footer";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+
 console.log(API_KEY);
 const Home = () => {
   const [netflixOriginal, setNetflixoriginal] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [video, setVideo] = useState(null);
@@ -43,7 +44,6 @@ const Home = () => {
       setNetflixoriginal(
         data.results[Math.floor(Math.random() * data.results.length)]
       );
-      setLoading(false);
       return data;
     };
     fetchNetflixOriginals().catch((err) => {
@@ -53,7 +53,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <main className=" pb-24">
+      <main className=" pb-12">
         <Banner movie={netflixOriginal} handleSelected={handleSelected} />
 
         <Row
@@ -95,6 +95,7 @@ const Home = () => {
         />
         {isOpen && <Modal video={video} onClose={() => setIsOpen(false)} />}
       </main>
+      <Footer />
     </>
   );
 };

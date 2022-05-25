@@ -16,6 +16,9 @@
     @apply flex items-center gap-2 py-1 px-3 rounded md:px-4 md:py-2 md:text-lg hover:opacity-70 transition-opacity lg:px-6;
   }
   .hoverCard {
-    @apply hover:scale-[1.08] hover:opacity-50 transition-all;
+    @apply hover:scale-[1.08] hover:opacity-50 transition-all hover:rounded;
+  }
+  .hoverSocials {
+    @apply hover:text-[#19C4D1] transition-all;
   }
 }
